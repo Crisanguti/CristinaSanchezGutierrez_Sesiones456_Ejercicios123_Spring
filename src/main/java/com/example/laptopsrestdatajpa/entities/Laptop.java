@@ -1,32 +1,39 @@
 package com.example.laptopsrestdatajpa.entities;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@ApiModel("Laptop entity")
 public class Laptop {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty("Auto-incremental Long type key")
     private Long id;
     private String brand;
     private String model;
+    @ApiModelProperty("EUR")
     private Double price;
+    @ApiModelProperty("GB")
     private Integer memory;
-    private Boolean isSDD;
+    private Boolean isSSD;
 
     public Laptop() {
     }
 
-    public Laptop(Long id, String brand, String model, Double price, Integer memory, Boolean isSDD) {
+    public Laptop(Long id, String brand, String model, Double price, Integer memory, Boolean isSSD) {
         this.id = id;
         this.brand = brand;
         this.model = model;
         this.price = price;
         this.memory = memory;
-        this.isSDD = isSDD;
+        this.isSSD = isSSD;
     }
 
     public Long getId() {
@@ -70,11 +77,11 @@ public class Laptop {
     }
 
     public Boolean getSDD() {
-        return isSDD;
+        return isSSD;
     }
 
     public void setSDD(Boolean SDD) {
-        isSDD = SDD;
+        isSSD = SDD;
     }
 
     @Override
@@ -85,7 +92,7 @@ public class Laptop {
                 ", model='" + model + '\'' +
                 ", price=" + price +
                 ", memory=" + memory +
-                ", isSDD=" + isSDD +
+                ", isSDD=" + isSSD +
                 '}';
     }
 }
