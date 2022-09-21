@@ -51,8 +51,8 @@ public class LaptopController {
     }
 
     //3. Updating existing laptops in database
-    @PutMapping("/api/laptops")
-    public ResponseEntity<Laptop> update (@RequestBody Laptop laptop){
+    @PutMapping("/api/laptops/{id}")
+    public ResponseEntity<Laptop> update (@PathVariable ("id") @RequestBody Laptop laptop){
         if(laptop.getId() == null){
             log.warn("Trying to update a nonexistent laptop");
             return ResponseEntity.badRequest().build();
@@ -60,7 +60,9 @@ public class LaptopController {
             log.warn("Trying to update a nonexistent laptop");
             return ResponseEntity.notFound().build();
         }
+
         //When no ifs exist, process success
+
         Laptop result = laptopRepository.save(laptop);
         return ResponseEntity.ok(result);
     }
